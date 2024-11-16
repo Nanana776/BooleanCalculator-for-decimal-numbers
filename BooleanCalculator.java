@@ -1,34 +1,62 @@
 public class BooleanCalculator {
 
-    public void and(int val1, int val2) {
-        System.out.println(val1 & val2);
+    private long toLongBits(double val) {
+        return (long) val; 
     }
-  
-    public void or(int val1, int val2) {
-         System.out.println(val1 | val2);
+
+    private double toDouble(long bits) {
+        return (double) bits; 
     }
-  
-    public void xor(int val1, int val2) {
-             System.out.println(val1 ^ val2);
+
+    public void and(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = bits1 & bits2;
+        System.out.println(toDouble(result));  
     }
-  
-    public void not(int val1) {
-             System.out.println(~val1);
+
+    public void or(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = bits1 | bits2;
+        System.out.println(toDouble(result)); 
     }
-  
-    public void nand(int val1, int val2) {
-         System.out.println(~(val1 & val2));
+
+    public void xor(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = bits1 ^ bits2;
+        System.out.println(toDouble(result)); 
     }
-  
-    public void nor(int val1, int val2) {
-        System.out.println(~(val1 | val2));
+
+    public void not(double val1) {
+        long bits = toLongBits(val1);
+        long result = ~bits;
+        System.out.println(toDouble(result));  
     }
-  
-    public void xnor(int val1, int val2) {
-        System.out.println(~(val1 ^ val2));
+
+    public void nand(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = ~(bits1 & bits2); 
+        System.out.println(toDouble(result));  
     }
-  
-    public void calculate(int val1, int val2, String operation) {
+
+    public void nor(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = ~(bits1 | bits2); 
+        System.out.println(toDouble(result)); 
+    }
+
+    public void xnor(double val1, double val2) {
+        long bits1 = toLongBits(val1);
+        long bits2 = toLongBits(val2);
+        long result = ~(bits1 ^ bits2);  
+        System.out.println(toDouble(result));  
+    }
+
+    public void calculate(double val1, double val2, String operation) {
         switch (operation.toLowerCase()) {
             case "and":
                 and(val1, val2);
@@ -55,6 +83,4 @@ public class BooleanCalculator {
                 System.out.println("Can't execute: " + operation);
         }
     }
-  }
-  
-  
+}
